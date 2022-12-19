@@ -1,8 +1,7 @@
-json.partial! @guest, partial: 'guest', as: :guest 
+json.partial! "api/guests/guest", guest: @guest
 
 
 json.gifts @guest.gifts do |gift|
-    json.title gift.title
-    json.description gift.description
-    json.party gift.party 
+    json.partial! "api/gifts/gift", gift: gift
+    json.party gift.party.name
 end 

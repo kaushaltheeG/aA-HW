@@ -1,5 +1,5 @@
-json.extract! @party, :name, :location
-json.guests @party.guests.map do |guest|
+json.partial! "api/parties/party", party: @party 
+json.guests @party.guests do |guest|
     json.name guest.name 
-    json.gifts guest.gifts.map {|gift| gift.title}
+    json.gifts guest.gifts.select {|gift| gift.title if gift.party_id == @party.id }
 end 
